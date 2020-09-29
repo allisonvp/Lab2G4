@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.ArrayList;
+
 public class AgregarTareaActivity extends AppCompatActivity {
 
     @Override
@@ -15,6 +17,9 @@ public class AgregarTareaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar_tarea);
         setTitle("Agregar tarea");
+
+        Intent intent = getIntent();
+        final ArrayList<String> tareaslist = (ArrayList<String>) intent.getSerializableExtra("tareas");
 
         Button button = findViewById(R.id.buttonNuevaTarea);
 
@@ -24,7 +29,8 @@ public class AgregarTareaActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 EditText inputText= findViewById(R.id.inputTarea);
                 String textTarea = inputText.getText().toString();
-                intent.putExtra("nombreTarea",textTarea);
+                tareaslist.add(textTarea);
+                intent.putExtra("tareas",tareaslist);
                 setResult(RESULT_OK,intent);
                 finish();
             }

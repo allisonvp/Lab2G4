@@ -2,6 +2,7 @@ package pe.edu.pucp.tel306;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
 import android.media.Image;
@@ -21,7 +22,7 @@ import java.util.Iterator;
 public class TareasPendientes extends AppCompatActivity {
 
     private int contadorImg = 0;
-    private ArrayList<String> tareas = null;
+    private ArrayList<String> tareas = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +38,10 @@ public class TareasPendientes extends AppCompatActivity {
         final LinearLayout ll = findViewById(R.id.listaTareas);
         Intent intent = getIntent();
         Persona persona = (Persona) intent.getSerializableExtra("persona");
-        if(persona!=null) {
+        if (persona != null) {
             setTitle("Tareas de " + persona.getNombreCompleto());
-            TextView bienvenido=findViewById(R.id.textBienvenido);
-            bienvenido.setText(String.valueOf("Bienvenido, "+persona.getNombre()));
+            TextView bienvenido = findViewById(R.id.textBienvenido);
+            bienvenido.setText(String.valueOf("Bienvenidx, " + persona.getNombre()));
             switch (persona.getCarrera()) {
                 case "Telecomunicaciones":
                     imgteleco.setVisibility(View.VISIBLE);
@@ -56,14 +57,13 @@ public class TareasPendientes extends AppCompatActivity {
                     break;
             }
         }
-        /**AQUI DEBO OBTENER LAS TAREAS*/
-        tareas = new ArrayList<>();
 
-
+        TextView notask = findViewById(R.id.noTask);
         if (tareas.isEmpty()) {
-            TextView notask = findViewById(R.id.noTask);
             notask.setVisibility(View.VISIBLE);
         } else {
+            notask.setVisibility(View.INVISIBLE);
+            ll.setVisibility(View.VISIBLE);
             for (String tarea : tareas) {
                 CheckBox cb = new CheckBox(getApplicationContext());
                 cb.setOnClickListener(new checkboxTareas());
@@ -78,15 +78,17 @@ public class TareasPendientes extends AppCompatActivity {
             public void onClick(View view) {
                 contadorImg++;
                 if (contadorImg == 5) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                     Toast.makeText(TareasPendientes.this, "Has desbloqueado la opción oscura", Toast.LENGTH_SHORT).show();
                 } else if (contadorImg == 10) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                     Toast.makeText(TareasPendientes.this, "Has restaurado el modo claro", Toast.LENGTH_SHORT).show();
                     contadorImg = 0;
                 }
             }
         });
 
-        Button btnsesion =findViewById(R.id.buttonNewSesion);
+        Button btnsesion = findViewById(R.id.buttonNewSesion);
         btnsesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,11 +97,11 @@ public class TareasPendientes extends AppCompatActivity {
                 finish();
             }
         });
-        Button btntarea =findViewById(R.id.buttonAddTask);
+        Button btntarea = findViewById(R.id.buttonAddTask);
         btntarea.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(TareasPendientes.this, MainActivity.class);
+                Intent intent = new Intent(TareasPendientes.this, AgregarTareaActivity.class);
                 intent.putExtra("tareas", tareas);
 
                 int requestCode = 1;
@@ -107,6 +109,7 @@ public class TareasPendientes extends AppCompatActivity {
             }
         });
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -115,15 +118,17 @@ public class TareasPendientes extends AppCompatActivity {
 
         if (requestCode == 1 && resultCode == RESULT_OK) {
             ArrayList<String> datafromact2 = (ArrayList<String>) data.getSerializableExtra("tareas");
-            if (datafromact2!=null) {
-                TextView textView = findViewById(R.id.title);
-                String texto = textView.getText().toString();
+            if (datafromact2 != null) {
+                TextView notask = findViewById(R.id.noTask);
+                notask.setVisibility(View.INVISIBLE);
+                ll.setVisibility(View.VISIBLE);
                 for (String tarea : datafromact2) {
                     CheckBox cb = new CheckBox(getApplicationContext());
                     cb.setOnClickListener(new checkboxTareas());
                     cb.setText(tarea);
                     ll.addView(cb);
                 }
+                tareas = datafromact2;
                 Toast.makeText(this, "Nueva tarea agregada!", Toast.LENGTH_SHORT).show();
             }
         }
