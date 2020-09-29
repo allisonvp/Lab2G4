@@ -27,31 +27,24 @@ public class AgregarTareaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                EditText inputText= findViewById(R.id.inputTarea);
+                EditText inputText = findViewById(R.id.inputTarea);
                 String textTarea = inputText.getText().toString();
 
-                intent.putExtra("tareas",tareaslist);
-
-                if(textTarea.isEmpty()) {
+                if (textTarea.isEmpty()) {
                     inputText.setError("No puede estar vacío");
                 }
-
-                for(String tarea: tareaslist){
-                    if (textTarea.equals(tarea)){
-                        tareaslist.add(textTarea);
-                        intent.putExtra("nombreTarea",tareaslist);
-                        setResult(RESULT_OK,intent);
-                        finish();
-                    }else{
-                        inputText.setError("No se puede repetir la tarea");
+                boolean found = false;
+                for (String tarea : tareaslist) {
+                    if (textTarea.equals(tarea)) {
+                        found = true;
                     }
-
                 }
-
-
-
-
-
+                if (!found) {
+                    tareaslist.add(textTarea);
+                    intent.putExtra("tareas", tareaslist);
+                    setResult(RESULT_OK, intent);
+                    finish();
+                }
             }
         });
 
