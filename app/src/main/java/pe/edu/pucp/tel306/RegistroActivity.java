@@ -18,7 +18,7 @@ public class RegistroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
 
-        setTitle("PucpToDoList");
+        setTitle("Registrarse");
 
         if(savedInstanceState != null) {
             String nombreTexto = savedInstanceState.getString("nombre");
@@ -77,18 +77,18 @@ public class RegistroActivity extends AppCompatActivity {
                 if(dni.isEmpty()) {
                     editTextDni.setError("No puede estar vacío");
                 } else if(dni.length() < 8 || dni.length() > 8) {
-                    TextView textViewErrorCodigo = findViewById(R.id.textViewErrorDni);
-                    textViewErrorCodigo.setVisibility(View.VISIBLE);
+                    TextView textViewErrorDni = findViewById(R.id.textViewErrorDni);
+                    textViewErrorDni.setVisibility(View.VISIBLE);
                 }
-                //String[] añoCod = codigo.split("\\\\",8);
-                //String part1 = añoCod[0];
-                //int codigonum = Integer.valueOf(part1);
+                String[] añoCod = codigo.split("\\\\",8);
+                String part1 = añoCod[0];
+                int codigonum = Integer.valueOf(part1);
                 if(codigo.isEmpty()) {
                     editTextCodigo.setError("No puede estar vacío");
-                } /*else if(codigonum < 2012 || codigonum > 2017) {
-                    TextView textViewErrorCodigo = findViewById(R.id.textViewErrorDni);
+                } else if(codigonum < 2012 || codigonum > 2017) {
+                    TextView textViewErrorCodigo = findViewById(R.id.textViewErrorCodigo);
                     textViewErrorCodigo.setVisibility(View.VISIBLE);
-                }**/
+                }
                 if(password.isEmpty()) {
                     editTextPassword.setError("No puede estar vacío");
                 }
@@ -105,7 +105,7 @@ public class RegistroActivity extends AppCompatActivity {
 
 //S3cr3t306
                 if(!nombre.isEmpty() && !apellido.isEmpty() && !dni.isEmpty() && !codigo.isEmpty() && !password.isEmpty()
-                        && codigo.length() == 8 && password.equals("123")) {
+                        && codigo.length() == 8 && password.equals("S3cr3t306")) {
                     Toast.makeText(RegistroActivity.this, "Registro exitoso", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(RegistroActivity.this, TareasPendientes.class);
 
