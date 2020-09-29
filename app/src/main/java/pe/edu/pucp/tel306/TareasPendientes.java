@@ -1,5 +1,6 @@
 package pe.edu.pucp.tel306;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -28,7 +29,12 @@ public class TareasPendientes extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tareas_pendientes);
+        if (savedInstanceState != null) {
 
+            tareas = savedInstanceState.getStringArrayList("tareas");
+            contadorImg= savedInstanceState.getInt("contadorImg");
+
+        }
         View imgteleco = findViewById(R.id.imageteleco);
         View imgelect = findViewById(R.id.imageelect);
         View imgmeca = findViewById(R.id.imagemeca);
@@ -133,8 +139,14 @@ public class TareasPendientes extends AppCompatActivity {
             }
         }
     }
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
 
+        outState.putStringArrayList("tareas", tareas);
+        outState.putInt("contadorImg", contadorImg);
 
+    }
     class checkboxTareas implements View.OnClickListener {
         @Override
         public void onClick(View view) {
