@@ -9,6 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_check_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".AgregarTareaActivity"
+            android:parentActivityName=".TareasPendientes">
+        </activity>
         <activity android:name=".TareasPendientes">
 
         </activity>
