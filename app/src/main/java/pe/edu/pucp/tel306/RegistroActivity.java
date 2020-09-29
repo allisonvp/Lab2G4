@@ -80,15 +80,15 @@ public class RegistroActivity extends AppCompatActivity {
                     TextView textViewErrorDni = findViewById(R.id.textViewErrorDni);
                     textViewErrorDni.setVisibility(View.VISIBLE);
                 }
-                String[] añoCod = codigo.split("\\\\",8);
-                String part1 = añoCod[0];
-                int codigonum = Integer.valueOf(part1);
+                //String[] añoCod = codigo.split("\\\\",8);
+                //String part1 = añoCod[0];
+                //int codigonum = Integer.valueOf(part1);
                 if(codigo.isEmpty()) {
                     editTextCodigo.setError("No puede estar vacío");
-                } else if(codigonum < 2012 || codigonum > 2017) {
+                } /*else if(codigonum < 2012 || codigonum > 2017) {
                     TextView textViewErrorCodigo = findViewById(R.id.textViewErrorCodigo);
                     textViewErrorCodigo.setVisibility(View.VISIBLE);
-                }
+                }*/
                 if(password.isEmpty()) {
                     editTextPassword.setError("No puede estar vacío");
                 }
