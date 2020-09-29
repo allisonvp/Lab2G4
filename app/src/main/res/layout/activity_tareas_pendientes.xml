@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="44dp"
-            android:text="Agregar to do"
+            android:text="@string/agregar_to_do"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonNewSesion" />
@@ -26,7 +26,7 @@
             android:layout_width="202dp"
             android:layout_height="43dp"
             android:layout_marginTop="24dp"
-            android:text="PucpToDoList"
+            android:text="@string/pucptodolist"
             android:textAlignment="center"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -49,14 +49,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:visibility="gone"
-                app:srcCompat="@mipmap/ic_launcher_elect" />
+                app:srcCompat="@mipmap/ic_launcher_elect"
+                android:contentDescription="@string/todo" />
 
             <ImageView
                 android:id="@+id/imageteleco"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:visibility="gone"
-                app:srcCompat="@mipmap/ic_launcher_bat" />
+                app:srcCompat="@mipmap/ic_launcher_bat"
+                android:contentDescription="@string/todo" />
 
             <ImageView
                 android:id="@+id/imagemeca"
@@ -65,7 +67,8 @@
                 android:background="#00FFFFFF"
                 android:backgroundTint="#00FFFFFF"
                 android:visibility="visible"
-                app:srcCompat="@mipmap/ic_launcher_meca" />
+                app:srcCompat="@mipmap/ic_launcher_meca"
+                android:contentDescription="@string/todo" />
         </LinearLayout>
 
         <TextView
@@ -73,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:layout_marginTop="24dp"
-            android:text="Bienvenido"
+            android:text="@string/bienvenido"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.459"
             app:layout_constraintStart_toEndOf="@+id/layoutimagen"
@@ -84,7 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:text="Registrar sesión\nnuevamente"
+            android:text="@string/registrar_sesi_n_nnuevamente"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.449"
             app:layout_constraintStart_toEndOf="@+id/layoutimagen"
@@ -95,7 +98,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Lista de actividades pendientes"
+            android:text="@string/lista_de_actividades_pendientes"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.489"
@@ -107,7 +110,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="No hay tareas pendientes"
+            android:text="@string/no_hay_tareas_pendientes"
             android:textStyle="italic"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"

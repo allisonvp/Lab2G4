@@ -1,5 +1,14 @@
 <resources>
     <string name="app_name">Lab2G4</string>
+    <string name="pucptodolist">PucpToDoList</string>
+    <string name="lista_de_actividades_pendientes">Lista de actividades pendientes</string>
+    <string name="no_hay_tareas_pendientes">No hay tareas pendientes</string>
+    <string name="registrar_sesi_n_nnuevamente">Registrar sesión\nnuevamente</string>
+    <string name="agregar_to_do">Agregar to do</string>
+    <string name="bienvenido">Bienvenido</string>
+    <string name="todo">TODO</string>
+    <string name="todo">TODO</string>
+    <string name="todo">TODO</string>
     <string-array name="carreras">
         <item>Telecomunicaciones</item>
         <item>Electrónica</item>
