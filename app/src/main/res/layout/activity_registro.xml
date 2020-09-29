@@ -6,4 +6,144 @@
     android:layout_height="match_parent"
     tools:context=".RegistroActivity">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textViewTituloRegistro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="¡Bienvenido!"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="Regístrate para que puedas ver tus tareas pendientes"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/editTextNombre"
+                android:layout_width="286dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Nombre"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editTextApellido"
+                android:layout_width="286dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Apellido"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editTextDni"
+                android:layout_width="286dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="DNI"
+                android:inputType="number" />
+
+            <TextView
+                android:id="@+id/textViewErrorDni"
+                android:layout_width="286dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="El código debe tener 8 dígitos"
+                android:textColor="#F11707"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/editTextCodigo"
+                android:layout_width="286dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Código PUCP"
+                android:inputType="number" />
+
+            <TextView
+                android:id="@+id/textViewErrorCodigo"
+                android:layout_width="286dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="Códigos permitidos: 2012XXXX - 2017XXXX"
+                android:textColor="#F11707"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/editTextPassword"
+                android:layout_width="286dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Contraseña"
+                android:inputType="textPassword" />
+
+            <TextView
+                android:id="@+id/textViewErrorPassword"
+                android:layout_width="286dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="Contraseña incorrecta"
+                android:textColor="#F11707"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/textViewCarreras"
+                android:layout_width="286dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="Carrera"
+                android:textSize="18sp" />
+
+            <RadioGroup
+                android:layout_width="286dp"
+                android:layout_height="match_parent"
+                android:checkedButton="@id/radioButtonTeleco">
+
+                <RadioButton
+                    android:id="@+id/radioButtonTeleco"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Telecomunicaciones" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonElectro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Electrónica" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonMeca"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Mecatrónica" />
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/buttonIngresar"
+                android:layout_width="246dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="40dp"
+                android:text="Ingresar"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
