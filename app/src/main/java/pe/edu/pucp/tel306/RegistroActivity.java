@@ -70,18 +70,13 @@ public class RegistroActivity extends AppCompatActivity {
                 }
                 String textoCarrera = textViewOpcionCarrera.getText().toString();
 
-
+//S3cr3t306
                 if(!nombre.isEmpty() && !apellido.isEmpty() && !dni.isEmpty() && !codigo.isEmpty() && !password.isEmpty()
-                        && password.equals("S3cr3t306")) {
+                        && password.equals("123")) {
                     Toast.makeText(RegistroActivity.this, "Registro exitoso", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(RegistroActivity.this, MainActivity.class);
+                    Intent intent = new Intent(RegistroActivity.this, TareasPendientes.class);
 
-                    intent.putExtra("nombre", nombre);
-                    intent.putExtra("apellido", apellido);
-                    intent.putExtra("dni", dni);
-                    intent.putExtra("codigo", codigo);
-                    intent.putExtra("carrera", textoCarrera);
-
+                    intent.putExtra("persona", new Persona(nombre,apellido,textoCarrera));
                     startActivity(intent);
                     finish();
                 } else {

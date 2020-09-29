@@ -1,16 +1,20 @@
 package pe.edu.pucp.tel306;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -31,27 +35,31 @@ public class TareasPendientes extends AppCompatActivity {
         imgelect.setVisibility(View.GONE);
         imgmeca.setVisibility(View.GONE);
         final LinearLayout ll = findViewById(R.id.listaTareas);
+        Intent intent = getIntent();
+        Persona persona = (Persona) intent.getSerializableExtra("persona");
+        if(persona!=null) {
+            setTitle("Tareas de " + persona.getNombreCompleto());
+            TextView bienvenido=findViewById(R.id.textBienvenido);
+            bienvenido.setText(String.valueOf("Bienvenido, "+persona.getNombre()));
+            switch (persona.getCarrera()) {
+                case "Telecomunicaciones":
+                    imgteleco.setVisibility(View.VISIBLE);
 
+                    break;
+                case "Electronica":
+                    imgelect.setVisibility(View.VISIBLE);
+
+                    break;
+                case "Mecatronica":
+                    imgmeca.setVisibility(View.VISIBLE);
+
+                    break;
+            }
+        }
         /**AQUI DEBO OBTENER LAS TAREAS*/
         tareas = new ArrayList<>();
-        tareas.add("tarea1 hola");
-        tareas.add("tarea2 chau");
 
-        int select = 2;
-        switch (select) {
-            case 1:
-                imgteleco.setVisibility(View.VISIBLE);
 
-                break;
-            case 2:
-                imgelect.setVisibility(View.VISIBLE);
-
-                break;
-            case 3:
-                imgmeca.setVisibility(View.VISIBLE);
-
-                break;
-        }
         if (tareas.isEmpty()) {
             TextView notask = findViewById(R.id.noTask);
             notask.setVisibility(View.VISIBLE);
@@ -77,7 +85,50 @@ public class TareasPendientes extends AppCompatActivity {
                 }
             }
         });
+
+        Button btnsesion =findViewById(R.id.buttonNewSesion);
+        btnsesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TareasPendientes.this, RegistroActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        Button btntarea =findViewById(R.id.buttonAddTask);
+        btntarea.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TareasPendientes.this, MainActivity.class);
+                intent.putExtra("tareas", tareas);
+
+                int requestCode = 1;
+                startActivityForResult(intent, requestCode);
+            }
+        });
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        LinearLayout ll = findViewById(R.id.listaTareas);
+        ll.removeAllViews();
+
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            ArrayList<String> datafromact2 = (ArrayList<String>) data.getSerializableExtra("tareas");
+            if (datafromact2!=null) {
+                TextView textView = findViewById(R.id.title);
+                String texto = textView.getText().toString();
+                for (String tarea : datafromact2) {
+                    CheckBox cb = new CheckBox(getApplicationContext());
+                    cb.setOnClickListener(new checkboxTareas());
+                    cb.setText(tarea);
+                    ll.addView(cb);
+                }
+                Toast.makeText(this, "Nueva tarea agregada!", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
 
     class checkboxTareas implements View.OnClickListener {
         @Override
