@@ -135,6 +135,12 @@
                     android:text="Mecatrónica" />
             </RadioGroup>
 
+            <TextView
+                android:id="@+id/textViewOpcionCarrera"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+
             <Button
                 android:id="@+id/buttonIngresar"
                 android:layout_width="246dp"

@@ -60,11 +60,28 @@ public class RegistroActivity extends AppCompatActivity {
                     editTextPassword.setError("No puede estar vacío");
                 }
 
+                TextView textViewOpcionCarrera = findViewById(R.id.textViewOpcionCarrera);
+                if(radioButtonTeleco.isChecked()) {
+                    textViewOpcionCarrera.setText("Telecomunicaciones");
+                } else if (radioButtonElectro.isChecked()) {
+                    textViewOpcionCarrera.setText("Electronica");
+                } else if (radioButtonMeca.isChecked()) {
+                    textViewOpcionCarrera.setText("Mecatronica");
+                }
+                String textoCarrera = textViewOpcionCarrera.getText().toString();
+
 
                 if(!nombre.isEmpty() && !apellido.isEmpty() && !dni.isEmpty() && !codigo.isEmpty() && !password.isEmpty()
                         && password.equals("S3cr3t306")) {
                     Toast.makeText(RegistroActivity.this, "Registro exitoso", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(RegistroActivity.this, MainActivity.class);
+
+                    intent.putExtra("nombre", nombre);
+                    intent.putExtra("apellido", apellido);
+                    intent.putExtra("dni", dni);
+                    intent.putExtra("codigo", codigo);
+                    intent.putExtra("carrera", textoCarrera);
+
                     startActivity(intent);
                     finish();
                 } else {
